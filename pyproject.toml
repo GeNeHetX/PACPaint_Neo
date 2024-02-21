@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pacpaint-neo"
+version = "0.0.1"
+authors = [
+  { name="BLANCHARD Theau", email="blanchard.theau@live.fr" },
+]
+maintainers = [
+  { name="BLANCHARD Theau", email="blanchard.theau@live.fr"},
+  {name="PIGNOLET Camille", email="camille.pignolet@inserm.fr"},
+  {name="NICOLLE Rémy", email="remy.nicolle@inserm.fr"},
+  ]
+description = "Prediction of neoplasic tiles in histological images"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: Free for non-commercial use",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/GeNeHetX/PACPaint_Neo"
+Issues = "https://github.com/GeNeHetX/PACPaint_Neo/issues"
