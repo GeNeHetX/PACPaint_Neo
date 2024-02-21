@@ -44,4 +44,5 @@ Where:
 
 ## References
 [1] Saillard, Charlie, Flore Delecourt, Benoit Schmauch, Olivier Moindrot, Magali Svrcek, Armelle Bardier-Dupas, Jean Francois Emile, et al. « Pacpaint: a histology-based deep learning model uncovers the extensive intratumor molecular heterogeneity of pancreatic adenocarcinoma ». Nature Communications 14 (13 juin 2023): 3459. https://doi.org/10.1038/s41467-023-39026-y.
+
 [2]Kang, Mingu, Heon Song, Seonwook Park, Donggeun Yoo, et Sérgio Pereira. « Benchmarking Self-Supervised Learning on Diverse Pathology Datasets ». arXiv, 18 avril 2023. https://doi.org/10.48550/arXiv.2212.04690.
