@@ -33,7 +33,7 @@ Where:
 - `--temp_dir` is the directory where the temporary files will be stored.
 - `--wsi` is the path to the WSI. It accepts ".svs", ".ndpi" and ".qptiff" files. More formats can be added in the `extract_features.py` file.
 - `--neo` is the path to the pretrained neoplasic detection model.
-<!-- - `--comp` is the path to the pretrained molecular subtype prediction model. -->
+<!-- - `--comp` is the path to the pretrained molecular subtype prediction model.  This feature is not really working well-->
 - `--device` is the device to use for the prediction. It can be "cuda:0" or "cpu" if you don't have a GPU.
 - `--batch_size` is the batch size to use for the prediction.
 - `--num_workers` is the number of workers to use for the prediction. If on Windows, it should be set to 0.
