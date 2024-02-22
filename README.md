@@ -11,8 +11,9 @@ To utilise the package, you need to download the code from this repository. You 
 git clone https://github.com/GeNeHetX/PACPaint_Neo.git
 ```
 
-Then, you need to install the required packages.
-To install the required packages, you can use the following command:
+Then, you need to install the required packages. 
+First, having OpenSlide is mandatory. Considerer visiting [their website](https://openslide.org/download/). In short for Linux users, choose the command corresponding to your distro. For windows users, download the Windows 64-bit Binaries and follow [these insctructions](https://openslide.org/api/python/). You will have to change the value of `OPENSLIDE_PATH` in python files. I suggest using Linux or WSL.
+Then to install the required packages, you can use the following command:
 
 ```bash
 pip install -r requirements.txt
@@ -31,9 +32,9 @@ usage: process_wsi.py [-h] --temp_dir TEMP_DIR [--wsi WSI] [--neo NEO] [--device
 Where:
 - `--temp_dir` is the directory where the temporary files will be stored.
 - `--wsi` is the path to the WSI. It accepts ".svs", ".ndpi" and ".qptiff" files. More formats can be added in the `extract_features.py` and `extract_tiles.py` files.
-- `--neo` is the path to the pretrained neoplasic detection model.
+- `--neo` is the path to the pretrained neoplasic detection model. The model is to be found in `src/models/model_neo.path`.
 <!-- - `--comp` is the path to the pretrained molecular subtype prediction model.  This feature is not really working well-->
-- `--device` is the device to use for the prediction. It can be "cuda" or "cpu" if you don't have a GPU.
+- `--device` is the device to use for the prediction. It can be "cuda" or "cpu" if you don't have a GPU. default is "cuda".
 - `--batch_size` is the batch size to use for the prediction.
 - `--num_workers` is the number of workers to use for the prediction. If on Windows, it should be set to 0.
 - `--prefetch_factor` is the prefetch factor to use for the prediction. If on Windows, it should be set to `None`.
