@@ -62,10 +62,11 @@ class TilesDataset(Dataset):
             self.magnification = 20
         else:
             raise ValueError(f"Objective power {self.magnification}x not supported")
-        assert np.all(
-            self.tiles_coords[:, 0] == self.magnification
-        ), "The resolution of the tiles is not the same as the resolution of the slide."
         self.z = self.level
+
+        assert np.all(
+            self.tiles_coords[:, 0] == self.z
+        ), "The resolution of the tiles is not the same as the resolution of the slide."
 
     def __getitem__(self, item: int):
         tile_coords = self.tiles_coords[item, 2:4].astype(int)
