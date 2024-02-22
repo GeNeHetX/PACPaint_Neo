@@ -26,7 +26,7 @@ class TilesWhiteDataset(Dataset):
         self.slide = slide
         file_extension = Path(self.slide._filename).suffix
         if file_extension == ".svs":
-            self.z = int(self.slide.properties["openslide.objective-power"])
+            self.magnification = int(self.slide.properties["openslide.objective-power"])
         elif file_extension == ".qptiff":
             r = (
                 ET.fromstring(slide.properties["openslide.comment"])
@@ -34,24 +34,25 @@ class TilesWhiteDataset(Dataset):
                 .find("root")
                 .find("ScanResolution")
             )
-            self.z = int(r.find("Magnification").text)
+            self.magnification = int(r.find("Magnification").text)
         elif file_extension == ".ndpi":
-            self.z = int(self.slide.properties["openslide.objective-power"])
+            self.magnification = int(self.slide.properties["openslide.objective-power"])
         else:
             raise ValueError(f"File extension {file_extension} not supported")
         self.dz = DeepZoomGenerator(slide, tile_size=tile_size, overlap=0)
         # We want the second highest level so as to have 112 microns tiles / 0.5 microns per pixel
-        if self.z == 20:
+        if self.magnification == 20:
             self.level = self.dz.level_count - 1
-        elif self.z == 40:
+        elif self.magnification == 40:
             self.level = self.dz.level_count - 2
         else:
-            raise ValueError(f"Objective power {self.z}x not supported")
+            raise ValueError(f"Objective power {self.magnification}x not supported")
         self.h, self.w = self.dz.level_dimensions[self.level]
         self.h_tile, self.w_tile = self.dz.level_tiles[self.level]
         # Get rid of the last row and column because they can't fit a full tile usually
         self.h_tile -= 1
         self.w_tile -= 1
+        self.z = self.level
 
     def idx_to_ij(self, item: int):
         return np.unravel_index(item, (self.h_tile, self.w_tile))
@@ -78,11 +79,10 @@ def filter_whites(path_svs, folder_path):
     h_thumb, w_thumb = img.shape[:2]
     w_slide, h_slide = slide.dimensions
     z = slide_dt.z
-    if z == 20:
+    if slide_dt.magnification == 20:
         w_slide, h_slide = w_slide, h_slide
-    elif z == 40:
+    elif slide_dt.magnification == 40:
         w_slide, h_slide = w_slide // 2, h_slide // 2
-        z = z // 2
     w_ratio = w_thumb / w_slide
     h_ratio = h_thumb / h_slide
     w_ratio, h_ratio

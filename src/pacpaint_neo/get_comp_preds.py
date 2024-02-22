@@ -337,18 +337,13 @@ def get_comp_preds(
     x_torch = torch.tensor(x).float().to(device)
 
     df_pred_tiles = pd.DataFrame(coord[:, [0, 1, 2]], columns=["z", "x", "y"])
-    print(df_pred_tiles.head())
     with torch.inference_mode():
         score_wsi, scores_tiles = model.forward(x_torch.unsqueeze(0))
         score_wsi = score_wsi.cpu().detach().numpy()
         scores_tiles = scores_tiles.cpu().numpy().squeeze()
 
-        print(score_wsi.shape, scores_tiles.shape)
-        print(score_wsi, col_names)
         df_pred_wsi = pd.DataFrame(score_wsi, columns=col_names)
         df_pred_tiles_ = pd.DataFrame(scores_tiles, columns=col_names)
-        print("\n\n\n")
-        print(df_pred_tiles_.head())
         df_pred_tiles = pd.concat([df_pred_tiles, df_pred_tiles_], axis=1)
 
         df_pred_wsi.to_csv(PATH_TEMP_DIR / f"{slidename}" / "preds_comp_wsi.csv", index=False)
