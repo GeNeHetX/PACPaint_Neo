@@ -1,4 +1,5 @@
 import os
+import numpy as np
 
 # Demerdez-vous pour installer openslide sur votre machine
 OPENSLIDE_PATH = r"D:\DataManage\openslide-win64-20231011\bin"
