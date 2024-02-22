@@ -90,7 +90,7 @@ def main(args):
         prefetch_factor=args.prefetch_factor,
     )
     PATH_FEATURES = args.temp_dir / f"{slidename}" / "features.npy"
-    # np.save(PATH_FEATURES, features)
+    np.save(PATH_FEATURES, features)
 
     print("Predicting neo...")
     pred_neo = get_neo_preds(slidename, args.neo, args.temp_dir, args.device, PATH_FEATURES=PATH_FEATURES)
