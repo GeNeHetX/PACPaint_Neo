@@ -329,7 +329,7 @@ def get_comp_preds(
         n_extreme=100,
         tiles_mlp_hidden=[128],
     )
-    model.load_state_dict(torch.load(PATH_COMP))
+    model.load_state_dict(torch.load(PATH_COMP,map_location="cpu"))
     # model = model.score_model
     model.to(device)
     model.eval()
