@@ -64,7 +64,7 @@ def get_neo_preds(
         hidden=[128],
         activation=torch.nn.ReLU(),
     )
-    model.load_state_dict(torch.load(PATH_NEO))
+    model.load_state_dict(torch.load(PATH_NEO,map_location="cpu"))
     # Add a sigmoid layer to the model
     model.sigmoid = torch.nn.Sigmoid()
     model.to(device)
