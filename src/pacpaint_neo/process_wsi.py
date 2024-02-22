@@ -52,7 +52,7 @@ def parse_arg():
         help="Path to the comp model",
     )
     parser.add_argument(
-        "--device", type=device, default="cuda:0", help="Device to use for the predictions", choices=["cuda:0", "cpu"]
+        "--device", type=device, default="cuda:0", help="Device to use for the predictions"
     )
     parser.add_argument("--batch_size", type=int, default=512, help="Batch size for the feature extraction")
     parser.add_argument(
