@@ -24,7 +24,7 @@ pip install -r requirements.txt
 To use the model, you can use the following code:
 
 ```bash
-usage: process_wsi.py [-h] --temp_dir TEMP_DIR [--wsi WSI] [--neo NEO] [--device {cuda:0,cpu}]
+usage: python process_wsi.py [-h] --temp_dir TEMP_DIR [--wsi WSI] [--neo NEO] [--device {cuda:0,cpu}]
                       [--batch_size BATCH_SIZE] [--num_workers NUM_WORKERS] [--prefetch_factor PREFETCH_FACTOR]
                       [--pred_threshold PRED_THRESHOLD] [--display]
 ```
@@ -32,7 +32,7 @@ usage: process_wsi.py [-h] --temp_dir TEMP_DIR [--wsi WSI] [--neo NEO] [--device
 Where:
 - `--temp_dir` is the directory where the temporary files will be stored.
 - `--wsi` is the path to the WSI. It accepts ".svs", ".ndpi" and ".qptiff" files. More formats can be added in the `extract_features.py` and `extract_tiles.py` files.
-- `--neo` is the path to the pretrained neoplasic detection model. The model is to be found in `src/models/model_neo.path`.
+- `--neo` is the path to the pretrained neoplasic detection model. The model is to be found in `src/models/model_neo.pth`.
 <!-- - `--comp` is the path to the pretrained molecular subtype prediction model.  This feature is not really working well-->
 - `--device` is the device to use for the prediction. It can be "cuda" or "cpu" if you don't have a GPU. default is "cuda".
 - `--batch_size` is the batch size to use for the prediction.
