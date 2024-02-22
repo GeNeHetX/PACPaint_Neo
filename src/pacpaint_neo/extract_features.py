@@ -52,8 +52,14 @@ class TilesDataset(Dataset):
             self.magnification = float(r.find("Magnification").text)
         elif file_extension == ".ndpi":
             self.magnification = int(self.slide.properties["openslide.objective-power"])
+        elif file_extension == ".tiff": # experimental support of ome.tiff
+            root = ET.fromstring(slide.properties["openslide.comment"])
+            self.magnification = int(float(root[0][0].attrib["NominalMagnification"]))
         else:
-            raise ValueError(f"File extension {file_extension} not supported")
+            try :
+                self.magnification = int(self.slide.properties["openslide.objective-power"])
+            except:
+                raise ValueError(f"File extension {file_extension} not supported")
         # We want the second highest level so as to have 112 microns tiles / 0.5 microns per pixel
         if self.magnification == 20:
             self.level = self.dz.level_count - 1
