@@ -19,8 +19,11 @@ def convert_coord(img, slide, df_slide):
     h, w = img.shape[:2]
     w_slide, h_slide = slide.dimensions
     h_factor, w_factor = h / h_slide, w / w_slide
-    df_slide["x_img"] = df_slide.x * w_factor * 2 * 224
-    df_slide["y_img"] = df_slide.y * h_factor * 2 * 224
+    # Downscaling factor if not 40x. Might not work for all types of files.
+    rez = int(slide.properties["openslide.objective-power"])
+    rez = int(rez/20)
+    df_slide["x_img"] = df_slide.x * w_factor * rez * 224
+    df_slide["y_img"] = df_slide.y * h_factor * rez * 224
     return df_slide
 
 
